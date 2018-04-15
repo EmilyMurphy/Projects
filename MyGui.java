@@ -1,9 +1,12 @@
 package testcodeass;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,42 +16,34 @@ import javax.swing.JTextField;
 import testcodeass.AllFiles;
 
 public class MyGui extends JFrame implements ActionListener{
+	
 	/*
-	JAVA First Draft - My Search Engine
-	Emily Murphy
-	*/
+	JAVA Assignment - My Search Engine
+	Author: Emily Murphy
+	OS: MAC OSX
+	Compiler: eclipse
+	Due Date: 16-04-2018
+	 */
 	
-	JButton Choice1;
-	JButton Choice2;
+
+	JButton Close;//for exit program
+	JButton CloseBox;//to close search box
+	JButton button1;//search
+	JButton button2;//search new directory
+	JButton button3;//delete search
+	static JTextField f1;//take search parameters
+	static JTextField f2;//specify directory to search
+	static JTextArea textArea;//display results
+	JFrame frame;//display textarea
 	
-	
-	JButton button1;
-	JButton button2;
-	JButton button3;
-	JButton button4;
-	static JTextField f1;
-	static JTextField f2;
-	static JTextField f3;
-	static JTextArea textArea;
-	JFrame frame;
-	
+	//GUI
 	MyGui(String title) 
 	{
 		super(title);
 		setSize(400,300);
 		setLayout(new FlowLayout());
 		
-		/*
-		Choice1 = new JButton("Default Directory");
-		add(Choice1);
-		Choice1.addActionListener(this);
-		setVisible(true);
-		
-		Choice2 = new JButton("Choose Directory");
-		add(Choice2);
-		Choice2.addActionListener(this);
-		setVisible(true);
-		*/
+
 		
 		//for default directory search
 		button1 = new JButton("Search Default");
@@ -57,59 +52,32 @@ public class MyGui extends JFrame implements ActionListener{
 		setVisible(true);
 	
 		
-		f1 = new JTextField("Enter words");
+		f1 = new JTextField("Enter Search Words ",15);
 		add(f1);
 		f1.addActionListener(this);
 		f1.setToolTipText("Please enter term here");
 		setVisible(true);
 
-		
-		button2 = new JButton("Delete Search");
-		add(button2);
-		button2.addActionListener(this);
-		setVisible(true);
-
-		
-		/*
-		//for choose directory search
-		button4 = new JButton("Search");
-		add(button4);	
-		button4.addActionListener(this);		
-		//setVisible(true);
-		
-		
-		f3 = new JTextField("Enter words");
-		add(f3);
-		f3.addActionListener(this);
-		f3.setToolTipText("Please enter term here");
-		//setVisible(true);
-		*/
-		
-		
+	
 		//text area box
 		frame = new JFrame ("Test");
 		frame.setSize(500,500);
 		frame.setResizable(false);
 		
 		textArea = new JTextArea();
-		textArea.setSize(400,400);    
+
+		textArea.setSize(200,200);    
 
 		textArea.setLineWrap(true);
 		textArea.setEditable(false);
-		textArea.setVisible(true);
+		
 		
 		//add scroll function 
 		JScrollPane scroll = new JScrollPane (textArea);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
 		frame.add(scroll);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
-
-		 
 		
 		button3 = new JButton("Search New Directory");
 		button3.addActionListener(this);
@@ -122,19 +90,35 @@ public class MyGui extends JFrame implements ActionListener{
 		f2.setToolTipText("Please enter term here");
 		add(f2);
 		setVisible(true);
+		
+		Close = new JButton("Exit Program");
+		add(Close);
+		Close.addActionListener(this);
+		setVisible(true);
+		
+		button2 = new JButton("Delete Search");
+		add(button2);
+		button2.addActionListener(this);
+		setVisible(true);
+		
+		CloseBox = new JButton("Close Search Results");
+		add(CloseBox);
+		CloseBox.addActionListener(this);
+		setVisible(true);
+
 			
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		//if (e.getSource() == Choice1)
-		//{
 
 			if(e.getSource() == button1)
 			{
-
-
+				//open textArea
+				textArea.setVisible(true);
+				frame.setVisible(true);
+				//run the search with default directory
 				AllFiles defaultdir = new AllFiles();				
 				defaultdir.listFiles();
 				
@@ -143,30 +127,41 @@ public class MyGui extends JFrame implements ActionListener{
 			
 			if(e.getSource() == button2)
 			{
+				//delete previous searches
 				textArea.selectAll();
 				textArea.replaceSelection(null);
 			}
 		
 		
-		
-		//}
 
-			
-		//if (e.getSource() == Choice2)
-		//{
 			
 		
 			if(e.getSource() == button3)
 			{
-			
+				//open textArea
+				textArea.setVisible(true);
+				frame.setVisible(true);
+				//run the search using new directory
 				SelectFile test = new SelectFile();			
 				test.StrongFiles();
 			}
 		
 		
-		//}
+	
 		
 		
+			if(e.getSource() == Close)
+			{
+			
+				System.exit(0); //closes the Program
+			}
+			
+			if(e.getSource() == CloseBox)
+			{
+			
+				frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)); //closes the TextArea Box
+			}
+			
 	}
 		
 		
