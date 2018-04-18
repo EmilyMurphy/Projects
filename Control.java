@@ -1,4 +1,4 @@
-package testcodeass;
+package AssignmentJava;
 
 public class Control {
 	

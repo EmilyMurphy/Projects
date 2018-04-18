@@ -1,4 +1,4 @@
-package testcodeass;
+package AssignmentJava;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import testcodeass.AllFiles;
 
 public class MyGui extends JFrame implements ActionListener{
 	
@@ -60,7 +59,7 @@ public class MyGui extends JFrame implements ActionListener{
 
 	
 		//text area box
-		frame = new JFrame ("Test");
+		frame = new JFrame ("Search");
 		frame.setSize(500,500);
 		frame.setResizable(false);
 		

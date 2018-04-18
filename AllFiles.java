@@ -1,4 +1,4 @@
-package testcodeass;
+package AssignmentJava;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -49,17 +49,17 @@ public class AllFiles {
 						 for(int i = 0; i < result.length; i++) // checks open file for each word that is entered
 						{
 
-							 FileInputStream fis = new FileInputStream(files); //read all chars in file
+							 FileInputStream fis = new FileInputStream(files); //read through the file
 							 BufferedReader in = new BufferedReader(new InputStreamReader(fis)); //Buffers the Fileinputstream
 							 String readLine = ""; // used to hold each word read from file
 							 int count=0; // counts number of times a word is found
 							 int similar = 0;	
 							 
-							 while((readLine = in.readLine()) != null)// readLine = in.readLine();
+							 while((readLine = in.readLine()) != null)// checks if bufferedreader is null
 							 {
 								 String[] words = readLine.toLowerCase().replaceAll(","," ").split(" ");
 					  
-								 for(String s : words) 
+								 for(String s : words) //loop for string s in string array
 							 	{
 							 		if(s.equals(result[i])) 
 							 		{
@@ -107,18 +107,18 @@ public class AllFiles {
 
 			 }
 
+			 //sort lists
+			 Collections.sort(list); //sorts the list of files containing words
 			 
-			 Collections.sort(list); //sorts the list of files containing word
-			 Collections.reverse(list);// puts top results first
 			 
-			 Collections.sort(listSim); //sorts the list of files containing word
+			 Collections.sort(listSim); //sorts the list of files containing similar words
 			 Collections.reverse(listSim);// puts top results first
 			 
 			 if(list.isEmpty()) // check if no words found
 			 {
 
 					 list.add("No Search results found or Suggestions \n"); // adds result message
-					 //list.addAll(listSim); // adds suggestions
+					 
 				 
 			 }
 			 
